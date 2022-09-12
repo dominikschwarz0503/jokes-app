@@ -1,0 +1,12 @@
+.container {
+  width: 300px;
+  padding: 1rem 1rem;
+  border: 1px solid white;
+  background-color: aliceblue;
+  height: 4rem;
+  border-radius: 0.8rem;
+  margin-bottom: 2rem; }
+  .container p {
+    color: black; }
+
+/*# sourceMappingURL=JokeContainer.css.map */
