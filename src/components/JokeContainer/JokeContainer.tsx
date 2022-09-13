@@ -1,6 +1,4 @@
 import axios from "axios";
-import { config } from "process";
-import React from "react";
 import Button from "../Button/Button";
 import "./JokeContainer.css";
 
