@@ -1,6 +1,6 @@
 import React from "react";
 import "./Navbar.css";
-import peepoPic from "../../logo192.png";
+import peepoPic from "../../img/logo192.png";
 
 export default function Navbar() {
     return (
