@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import Button from "../Button/Button";
+import Navbar from "../Navbar/Navbar";
 import "./MemeContainer.css";
 
 const URLs = { memeapi: "https://meme-api.herokuapp.com/gimme" };
@@ -39,8 +40,9 @@ export default function MemeContainer() {
 
     return (
         <>
+            <Navbar navText="Memes" />
             <div className="container"></div>
-            <Button event={requestMeme} buttonText="Give me some memes!" />
+            <Button event={requestMeme} buttonText="Give me more memes!" />
         </>
     );
 }

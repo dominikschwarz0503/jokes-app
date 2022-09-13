@@ -3,9 +3,9 @@ footer {
   width: 100%;
   position: absolute;
   bottom: 0;
-  font-weight: bold;
-  margin-bottom: 2rem; }
+  font-weight: bold; }
   footer p {
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center; }

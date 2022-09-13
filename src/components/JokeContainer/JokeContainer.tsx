@@ -1,15 +1,15 @@
 import axios from "axios";
 import Button from "../Button/Button";
+import Navbar from "../Navbar/Navbar";
 import "./JokeContainer.css";
 
 const URLS = {
     icanhazdadjoke: "https://icanhazdadjoke.com/",
     chucknorrisapi: "https://api.chucknorris.io/jokes/random",
-    memeapi: "https://meme-api.herokuapp.com/gimme",
 };
 
 export default function JokeContainer() {
-    const requestDadJokes = async () => {
+    const requestJokes = async () => {
         const headers = {
             Accept: "application/json",
         };
@@ -38,9 +38,10 @@ export default function JokeContainer() {
 
     return (
         <>
+            <Navbar navText="Chuck Norris Jokes" />
             <div className="container"></div>
             <Button
-                event={requestDadJokes}
+                event={requestJokes}
                 buttonText="Show me those dad jokes!"
             />
         </>
