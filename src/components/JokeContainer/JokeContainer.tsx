@@ -39,7 +39,10 @@ export default function JokeContainer() {
     return (
         <>
             <div className="container"></div>
-            <Button event={requestDadJokes} />
+            <Button
+                event={requestDadJokes}
+                buttonText="Show me those dad jokes!"
+            />
         </>
     );
 }

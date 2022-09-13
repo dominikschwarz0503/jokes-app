@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.css";
 import peepoPic from "../../img/logo192.png";
 
-export default function Navbar() {
+export default function Navbar(props: any) {
     return (
         <>
             <nav>
@@ -13,7 +13,7 @@ export default function Navbar() {
                         width={56}
                         height={48}
                     />
-                    <li>Dadjokes Reloaded</li>
+                    <li>{props.navText}</li>
                 </ul>
             </nav>
         </>
