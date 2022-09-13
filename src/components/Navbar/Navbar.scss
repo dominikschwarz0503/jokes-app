@@ -14,12 +14,12 @@ ul {
     width: 100%;
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    padding: 0%;
+    padding: 0 1rem;
 
     li {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: bold;
     }
 }

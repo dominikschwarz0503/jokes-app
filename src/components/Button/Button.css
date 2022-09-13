@@ -6,6 +6,12 @@
   border: none;
   font-weight: bold;
   padding: 1rem 1rem;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5); }
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  margin-top: 3rem; }
+  .button:active {
+    transform: translateY(5px);
+    transform: scale(0.95);
+    background-color: #d7ecff; }
 
 /*# sourceMappingURL=Button.css.map */

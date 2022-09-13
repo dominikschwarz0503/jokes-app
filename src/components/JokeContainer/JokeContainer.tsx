@@ -1,23 +1,38 @@
 import axios from "axios";
 import { config } from "process";
 import React from "react";
+import Button from "../Button/Button";
 import "./JokeContainer.css";
+
+const URLS = {
+    icanhazdadjoke: "https://icanhazdadjoke.com/",
+    chucknorrisapi: "https://api.chucknorris.io/jokes/random",
+    memeapi: "https://meme-api.herokuapp.com/gimme",
+};
 
 export default function JokeContainer() {
     const requestDadJokes = async () => {
-        try {
-            const response = await axios.get("https://icanhazdadjoke.com/");
-            const joke = document.createElement("p");
-            const container = document.querySelector(".container");
+        const headers = {
+            Accept: "application/json",
+        };
 
-            joke.innerHTML = response.data.joke;
-            joke.classList.add("joke");
-            if (container !== undefined) {
-                if (container?.childNodes.length >= 1) {
-                    container?.children[0].remove();
-                }
-            }
-            container?.append(joke);
+        try {
+            await axios
+                .get(URLS.chucknorrisapi, { headers })
+                .then((response) => {
+                    const joke = document.createElement("p");
+                    const container = document.querySelector(".container");
+
+                    if (container?.childNodes !== undefined) {
+                        if (container?.childNodes.length >= 1) {
+                            container?.children[0].remove();
+                        }
+                    }
+
+                    joke.innerHTML = response.data.value;
+                    joke.classList.add("joke");
+                    container?.append(joke);
+                });
         } catch (error) {
             console.log("Oh no, something went wrong!", error);
         }
@@ -25,9 +40,8 @@ export default function JokeContainer() {
 
     return (
         <>
-            <div className="container">
-                <p>Joke goes here...</p>
-            </div>
+            <div className="container"></div>
+            <Button event={requestDadJokes} />
         </>
     );
 }

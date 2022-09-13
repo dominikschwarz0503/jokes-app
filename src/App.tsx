@@ -12,7 +12,6 @@ function App() {
             <header className="App-header">
                 <Navbar />
                 <JokeContainer />
-                <Button />
                 <Footer />
             </header>
         </div>

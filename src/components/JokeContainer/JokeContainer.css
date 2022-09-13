@@ -1,12 +1,15 @@
 .container {
   width: 300px;
   padding: 1rem 1rem;
-  border: 1px solid white;
-  background-color: aliceblue;
-  height: 4rem;
+  border: 1px solid aliceblue;
+  min-height: 4rem;
   border-radius: 0.8rem;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5); }
   .container p {
-    color: black; }
+    color: white; }
 
 /*# sourceMappingURL=JokeContainer.css.map */
