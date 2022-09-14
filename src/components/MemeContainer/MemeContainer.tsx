@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import "./MemeContainer.css";
 
-const URLs = { memeapi: "https://meme-api.herokuapp.com/gimme" };
+const URLs = { memeapi: "https://meme-api.herokuapp.com/gimme/ich_iel" };
 
 export default function MemeContainer(props: any) {
     const [isConnected, setIsConnected] = useState(false);
 
     useEffect(() => {
         requestMeme();
-    });
+    }, [isConnected]);
 
     const requestMeme = async () => {
         const container = document.querySelector(".container");
@@ -60,7 +60,11 @@ export default function MemeContainer(props: any) {
         <>
             <div className="container"></div>
             {isConnected ? (
-                <Button event={requestMeme} buttonText="Give me more memes!" />
+                <Button
+                    className=""
+                    event={requestMeme}
+                    buttonText="Give me more memes!"
+                />
             ) : (
                 ""
             )}

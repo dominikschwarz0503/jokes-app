@@ -1,9 +1,9 @@
 footer {
     height: 80px;
     width: 100%;
-    position: absolute;
-    bottom: 0;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
 
     p {
         margin: 0;
