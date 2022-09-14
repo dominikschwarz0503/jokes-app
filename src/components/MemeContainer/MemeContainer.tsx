@@ -12,10 +12,6 @@ export default function MemeContainer(props: any) {
         requestMeme();
     });
 
-    const openHamburgerMenu = () => {
-        props.openHamburgerMenu();
-    };
-
     const requestMeme = async () => {
         const container = document.querySelector(".container");
 
