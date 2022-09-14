@@ -5,6 +5,7 @@ export default function HamburgerMenu(props: any) {
         document
             .querySelector(".hamburger-menu-container")
             ?.classList.add("closed");
+        props.closeHamburgerMenu();
     };
 
     return (

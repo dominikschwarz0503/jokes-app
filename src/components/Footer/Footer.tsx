@@ -1,7 +1,6 @@
 import React from "react";
 import "./Footer.css";
 import reactLogo from "../../logo.svg";
-import peepoPic from "../../img/logo192.png";
 
 export default function Footer() {
     return (

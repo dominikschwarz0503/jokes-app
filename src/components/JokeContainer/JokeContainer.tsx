@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import Button from "../Button/Button";
-import Navbar from "../Navbar/Navbar";
 import "./JokeContainer.css";
 
 const URLS = {
@@ -9,7 +8,7 @@ const URLS = {
     chucknorrisapi: "https://api.chucknorris.io/jokes/random",
 };
 
-export default function JokeContainer() {
+export default function JokeContainer(props: any) {
     const [isConnected, setIsConnected] = useState(false);
 
     const requestJokes = async () => {
@@ -21,23 +20,24 @@ export default function JokeContainer() {
         };
 
         try {
-            await axios
-                .get(URLS.chucknorrisapi, { headers })
-                .then((response) => {
-                    setIsConnected(true);
+            if (navigator.onLine) {
+                await axios
+                    .get(URLS.chucknorrisapi, { headers })
+                    .then((response) => {
+                        setIsConnected(true);
 
-                    if (container?.childNodes !== undefined) {
-                        if (container?.childNodes.length >= 1) {
-                            container?.children[0].remove();
+                        if (container?.childNodes !== undefined) {
+                            if (container?.childNodes.length >= 1) {
+                                container?.children[0].remove();
+                            }
                         }
-                    }
 
-                    joke.innerHTML = response.data.value;
-                    joke.classList.add("joke");
-                    container?.append(joke);
-                });
-        } catch (error) {
-            if (!isConnected) {
+                        joke.innerHTML = response.data.value;
+                        joke.classList.add("joke");
+                        container?.append(joke);
+                    });
+            } else {
+                setIsConnected(false);
                 if (container?.childNodes !== undefined) {
                     if (container?.childNodes.length >= 1) {
                         container?.children[0].remove();
@@ -49,12 +49,13 @@ export default function JokeContainer() {
                 joke.classList.add("joke");
                 container?.append(joke);
             }
+        } catch (error) {
+            console.log("ERROR", error);
         }
     };
 
     return (
         <>
-            <Navbar navText="Chuck Norris Jokes" />
             <div className="container"></div>
             {isConnected ? (
                 <Button
