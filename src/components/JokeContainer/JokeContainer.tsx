@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import Button from "../Button/Button";
 import Navbar from "../Navbar/Navbar";
 import "./JokeContainer.css";
@@ -9,7 +10,12 @@ const URLS = {
 };
 
 export default function JokeContainer() {
+    const [isConnected, setIsConnected] = useState(false);
+
     const requestJokes = async () => {
+        const joke = document.createElement("p");
+        const container = document.querySelector(".container");
+
         const headers = {
             Accept: "application/json",
         };
@@ -18,8 +24,7 @@ export default function JokeContainer() {
             await axios
                 .get(URLS.chucknorrisapi, { headers })
                 .then((response) => {
-                    const joke = document.createElement("p");
-                    const container = document.querySelector(".container");
+                    setIsConnected(true);
 
                     if (container?.childNodes !== undefined) {
                         if (container?.childNodes.length >= 1) {
@@ -32,7 +37,18 @@ export default function JokeContainer() {
                     container?.append(joke);
                 });
         } catch (error) {
-            console.log("Oh no, something went wrong!", error);
+            if (!isConnected) {
+                if (container?.childNodes !== undefined) {
+                    if (container?.childNodes.length >= 1) {
+                        container?.children[0].remove();
+                    }
+                }
+
+                const joke = document.createElement("p");
+                joke.innerHTML = "No internet connection.";
+                joke.classList.add("joke");
+                container?.append(joke);
+            }
         }
     };
 
@@ -40,10 +56,14 @@ export default function JokeContainer() {
         <>
             <Navbar navText="Chuck Norris Jokes" />
             <div className="container"></div>
-            <Button
-                event={requestJokes}
-                buttonText="Show me those dad jokes!"
-            />
+            {isConnected ? (
+                <Button
+                    event={requestJokes}
+                    buttonText="Show me those dad jokes!"
+                />
+            ) : (
+                ""
+            )}
         </>
     );
 }

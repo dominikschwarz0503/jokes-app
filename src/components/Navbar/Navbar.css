@@ -25,6 +25,8 @@ nav {
         margin-left: 1rem; }
       nav ul li .hamburger-icon {
         fill: white;
+        width: 32px;
+        height: 32px;
         margin-top: 0.25rem; }
 
 /*# sourceMappingURL=Navbar.css.map */
