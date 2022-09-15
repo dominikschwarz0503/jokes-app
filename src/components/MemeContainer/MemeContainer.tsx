@@ -65,6 +65,9 @@ export default function MemeContainer(props: any) {
                 url: memePic,
                 method: "GET",
                 responseType: "blob",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                },
             }).then((response) => {
                 const url = window.URL.createObjectURL(
                     new Blob([response.data])
