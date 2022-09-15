@@ -61,22 +61,16 @@ export default function MemeContainer(props: any) {
 
     const getMemeFromContainer = async (memePic: string) => {
         try {
-            await axios({
-                url: memePic,
-                method: "GET",
-                responseType: "blob",
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                },
-            }).then((response) => {
-                const url = window.URL.createObjectURL(
-                    new Blob([response.data])
-                );
-                console.log(memePic);
-                const link = document.querySelector(".download-link");
-                link?.setAttribute("href", url);
-                link?.setAttribute("download", "meme.jpg");
-            });
+            await fetch(memePic, {
+                mode: "no-cors",
+            })
+                .then((response) => response.blob())
+                .then((myBlob) => {
+                    const objectURL = URL.createObjectURL(myBlob);
+                    const link = document.querySelector(".download-link");
+                    link?.setAttribute("href", objectURL);
+                    link?.setAttribute("download", "meme.jpg");
+                });
         } catch (error) {
             console.log("Error happened", error);
         }
