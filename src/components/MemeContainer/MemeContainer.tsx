@@ -65,6 +65,9 @@ export default function MemeContainer(props: any) {
                 url: memePic,
                 method: "GET",
                 responseType: "blob",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                },
             }).then((response) => {
                 const url = window.URL.createObjectURL(
                     new Blob([response.data])
@@ -72,7 +75,7 @@ export default function MemeContainer(props: any) {
 
                 const link = document.querySelector(".download-link");
                 link?.setAttribute("href", url);
-                link?.setAttribute("download", "image.jpg");
+                link?.setAttribute("download", "meme.jpg");
             });
         } catch (error) {
             console.log("Error happened", error);
