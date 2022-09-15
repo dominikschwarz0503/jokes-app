@@ -1,6 +1,8 @@
 import "./HamburgerMenu.css";
 
 export default function HamburgerMenu(props: any) {
+    const categories = ["Memes", "Dadjokes", "Chuck Norris Jokes"];
+
     const closeHamburgerMenu = () => {
         document
             .querySelector(".hamburger-menu-container")
@@ -34,9 +36,9 @@ export default function HamburgerMenu(props: any) {
                     </svg>
                 </div>
                 <ul>
-                    <li>Memes</li>
-                    <li>Dadjokes</li>
-                    <li>Chuck Norris Jokes</li>
+                    {categories.map((category) => {
+                        return <li>{category}</li>;
+                    })}
                 </ul>
             </div>
         </>

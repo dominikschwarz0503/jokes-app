@@ -10,4 +10,9 @@
   align-items: center;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5); }
 
+.download-link {
+  margin-top: 1rem;
+  color: #71b1ec;
+  text-decoration: underline; }
+
 /*# sourceMappingURL=MemeContainer.css.map */

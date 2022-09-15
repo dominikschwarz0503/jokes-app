@@ -37,6 +37,8 @@ export default function MemeContainer(props: any) {
                     meme.setAttribute("height", "256");
                     meme.classList.add("meme");
                     container?.append(meme);
+
+                    getMemeFromContainer(meme);
                 });
             } else {
                 setIsConnected(false);
@@ -56,6 +58,23 @@ export default function MemeContainer(props: any) {
         }
     };
 
+    const getMemeFromContainer = (meme: any) => {
+        try {
+            axios({
+                url: "https://meme-api.herokuapp.com/gimme/ich_iel",
+                method: "GET",
+                responseType: "blob",
+            }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([meme]));
+                const link = document.querySelector(".download-link");
+                link?.setAttribute("href", url);
+                link?.setAttribute("download", "image.jpg");
+            });
+        } catch (error) {
+            console.log("Error happened", error);
+        }
+    };
+
     return (
         <>
             <div className="container"></div>
@@ -65,6 +84,14 @@ export default function MemeContainer(props: any) {
                     event={requestMeme}
                     buttonText="Give me more memes!"
                 />
+            ) : (
+                ""
+            )}
+            {isConnected ? (
+                // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                <a className="download-link" download>
+                    Or download this meme
+                </a>
             ) : (
                 ""
             )}

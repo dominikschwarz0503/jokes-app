@@ -1,11 +1,14 @@
 footer {
   height: 80px;
   width: 100%;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
   position: absolute;
-  bottom: 0;
-  font-weight: bold; }
+  bottom: 0; }
   footer p {
     margin: 0;
+    padding-bottom: 1rem;
     display: flex;
     justify-content: center;
     align-items: center; }
