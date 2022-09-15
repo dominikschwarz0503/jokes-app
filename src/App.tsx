@@ -18,7 +18,10 @@ function App() {
 
     const closeHamburgerMenu = () => {
         if (hamburgerMenuIsOpen) {
-            setHamburgerMenuIsOpen(false);
+            //Wait for the animation to finish, then close
+            setTimeout(() => {
+                setHamburgerMenuIsOpen(false);
+            }, 500);
         }
     };
 

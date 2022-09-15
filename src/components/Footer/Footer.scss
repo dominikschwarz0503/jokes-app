@@ -4,12 +4,13 @@ footer {
     font-weight: bold;
     display: flex;
     justify-content: center;
+    align-items: center;
     position: absolute;
+    background-color: #424752;
     bottom: 0;
 
     p {
         margin: 0;
-        padding-bottom: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;

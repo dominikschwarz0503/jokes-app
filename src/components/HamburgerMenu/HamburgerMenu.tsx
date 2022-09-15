@@ -1,12 +1,23 @@
+import { useEffect } from "react";
 import "./HamburgerMenu.css";
 
 export default function HamburgerMenu(props: any) {
+    useEffect(() => {
+        setTimeout(() => {
+            document
+                .querySelector(".hamburger-menu-container")
+                ?.classList.add("active");
+        }, 1);
+    });
+
     const categories = ["Memes", "Chuck Norris Jokes"];
 
     const closeHamburgerMenu = () => {
-        document
-            .querySelector(".hamburger-menu-container")
-            ?.classList.add("closed");
+        const container = document.querySelector(".hamburger-menu-container");
+
+        container?.classList.remove("active");
+        container?.classList.add("closed");
+
         props.closeHamburgerMenu();
     };
 
@@ -18,13 +29,7 @@ export default function HamburgerMenu(props: any) {
 
     return (
         <>
-            <div
-                className={
-                    props.active
-                        ? "hamburger-menu-container active"
-                        : "hamburger-menu-container closed"
-                }
-            >
+            <div className="hamburger-menu-container">
                 <div className="headline-container">
                     <h1>Categories</h1>
 

@@ -1,5 +1,5 @@
 .hamburger-menu-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   min-height: 100vh;
   width: 100vw;
@@ -9,9 +9,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: white; }
-  .hamburger-menu-container.closed {
-    display: none; }
+  color: white;
+  transform: translateX(100%);
+  transition: transform 0.3s ease; }
+  .hamburger-menu-container.active {
+    transform: translateX(0); }
   .hamburger-menu-container .headline-container {
     width: 100%;
     height: 80px;
