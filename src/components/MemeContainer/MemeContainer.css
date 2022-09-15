@@ -13,6 +13,7 @@
 .download-link {
   margin-top: 1rem;
   color: #71b1ec;
-  text-decoration: underline; }
+  text-decoration: underline;
+  user-select: none; }
 
 /*# sourceMappingURL=MemeContainer.css.map */
