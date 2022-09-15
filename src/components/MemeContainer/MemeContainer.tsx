@@ -67,6 +67,10 @@ export default function MemeContainer(props: any) {
                 responseType: "blob",
                 headers: {
                     "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods":
+                        "POST, GET, OPTIONS, PUT, DELETE",
+                    "Access-Control-Allow-Headers":
+                        "Content-Type, X-Auth-Token, Origin, Authorization",
                 },
             }).then((response) => {
                 const url = window.URL.createObjectURL(
