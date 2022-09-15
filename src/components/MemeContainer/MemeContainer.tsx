@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Button from "../Button/Button";
 import "./MemeContainer.css";
 
@@ -10,9 +10,10 @@ export default function MemeContainer(props: any) {
 
     useEffect(() => {
         requestMeme();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isConnected]);
 
-    const requestMeme = async () => {
+    const requestMeme = useCallback(async () => {
         const container = document.querySelector(".container");
 
         const headers = {
@@ -38,7 +39,7 @@ export default function MemeContainer(props: any) {
                     meme.classList.add("meme");
                     container?.append(meme);
 
-                    getMemeFromContainer(meme);
+                    getMemeFromContainer(response.data.url);
                 });
             } else {
                 setIsConnected(false);
@@ -56,16 +57,19 @@ export default function MemeContainer(props: any) {
         } catch (error) {
             console.log("ERROR", error);
         }
-    };
+    }, []);
 
-    const getMemeFromContainer = (meme: any) => {
+    const getMemeFromContainer = (memePic: string) => {
         try {
             axios({
-                url: "https://meme-api.herokuapp.com/gimme/ich_iel",
+                url: memePic,
                 method: "GET",
                 responseType: "blob",
             }).then((response) => {
-                const url = window.URL.createObjectURL(new Blob([meme]));
+                const url = window.URL.createObjectURL(
+                    new Blob([response.data])
+                );
+
                 const link = document.querySelector(".download-link");
                 link?.setAttribute("href", url);
                 link?.setAttribute("download", "image.jpg");
@@ -89,9 +93,7 @@ export default function MemeContainer(props: any) {
             )}
             {isConnected ? (
                 // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                <a className="download-link" download>
-                    Or download this meme
-                </a>
+                <a className="download-link">Or download this meme</a>
             ) : (
                 ""
             )}
