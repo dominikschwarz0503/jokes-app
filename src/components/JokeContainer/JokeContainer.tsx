@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import "./JokeContainer.css";
 
@@ -9,7 +9,11 @@ const URLS = {
 };
 
 export default function JokeContainer(props: any) {
-    const [isConnected, setIsConnected] = useState(false);
+    const [isConnected, setIsConnected] = useState(true);
+
+    useEffect(() => {
+        requestJokes();
+    });
 
     const requestJokes = async () => {
         const joke = document.createElement("p");
@@ -58,10 +62,7 @@ export default function JokeContainer(props: any) {
         <>
             <div className="container"></div>
             {isConnected ? (
-                <Button
-                    event={requestJokes}
-                    buttonText="Show me those dad jokes!"
-                />
+                <Button event={requestJokes} buttonText="Show me more!" />
             ) : (
                 ""
             )}

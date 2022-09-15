@@ -1,13 +1,19 @@
 import "./HamburgerMenu.css";
 
 export default function HamburgerMenu(props: any) {
-    const categories = ["Memes", "Dadjokes", "Chuck Norris Jokes"];
+    const categories = ["Memes", "Chuck Norris Jokes"];
 
     const closeHamburgerMenu = () => {
         document
             .querySelector(".hamburger-menu-container")
             ?.classList.add("closed");
         props.closeHamburgerMenu();
+    };
+
+    const switchCategory = (event: any) => {
+        console.log(event.target);
+        props.setCurrentCategory(event.target.innerText);
+        closeHamburgerMenu();
     };
 
     return (
@@ -36,8 +42,15 @@ export default function HamburgerMenu(props: any) {
                     </svg>
                 </div>
                 <ul>
-                    {categories.map((category) => {
-                        return <li>{category}</li>;
+                    {categories.map((category, k) => {
+                        return (
+                            <li
+                                onClick={(event) => switchCategory(event)}
+                                key={k}
+                            >
+                                {category}
+                            </li>
+                        );
                     })}
                 </ul>
             </div>
