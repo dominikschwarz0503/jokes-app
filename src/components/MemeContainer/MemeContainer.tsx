@@ -2,6 +2,7 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import Button from "../Button/Button";
 import "./MemeContainer.css";
+import { saveAs } from "file-saver";
 
 const URLs = { memeapi: "https://meme-api.herokuapp.com/gimme/ich_iel" };
 
@@ -38,8 +39,6 @@ export default function MemeContainer(props: any) {
                     meme.setAttribute("height", "256");
                     meme.classList.add("meme");
                     container?.append(meme);
-
-                    getMemeFromContainer(response.data.url);
                 });
             } else {
                 setIsConnected(false);
@@ -59,21 +58,14 @@ export default function MemeContainer(props: any) {
         }
     }, []);
 
-    const getMemeFromContainer = async (memePic: string) => {
-        try {
-            await fetch(memePic, {
-                mode: "no-cors",
-            })
-                .then((response) => response.blob())
-                .then((myBlob) => {
-                    const objectURL = URL.createObjectURL(myBlob);
-                    const link = document.querySelector(".download-link");
-                    link?.setAttribute("href", objectURL);
-                    link?.setAttribute("download", "meme.jpg");
-                });
-        } catch (error) {
-            console.log("Error happened", error);
-        }
+    const downloadImage = () => {
+        //Grab the image source
+        const image = document
+            .querySelector(".container")
+            ?.firstElementChild?.getAttribute("src");
+
+        //download to device
+        saveAs(image as string, "meme.png");
     };
 
     return (
@@ -90,7 +82,9 @@ export default function MemeContainer(props: any) {
             )}
             {isConnected ? (
                 // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                <a className="download-link">Or download this meme</a>
+                <a className="download-link" onClick={downloadImage}>
+                    Or download this meme
+                </a>
             ) : (
                 ""
             )}
