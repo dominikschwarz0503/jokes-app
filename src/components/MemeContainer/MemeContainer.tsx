@@ -59,24 +59,17 @@ export default function MemeContainer(props: any) {
         }
     }, []);
 
-    const getMemeFromContainer = (memePic: string) => {
+    const getMemeFromContainer = async (memePic: string) => {
         try {
-            axios({
+            await axios({
                 url: memePic,
                 method: "GET",
                 responseType: "blob",
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Methods":
-                        "POST, GET, OPTIONS, PUT, DELETE",
-                    "Access-Control-Allow-Headers":
-                        "Content-Type, X-Auth-Token, Origin, Authorization",
-                },
             }).then((response) => {
                 const url = window.URL.createObjectURL(
                     new Blob([response.data])
                 );
-
+                console.log(memePic);
                 const link = document.querySelector(".download-link");
                 link?.setAttribute("href", url);
                 link?.setAttribute("download", "meme.jpg");
