@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import "./MemeContainer.css";
 import { saveAs } from "file-saver";
