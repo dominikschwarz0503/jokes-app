@@ -4,17 +4,21 @@ import Button from "../Button/Button";
 import "./MemeContainer.css";
 import { saveAs } from "file-saver";
 
-const URLs = { memeapi: "https://meme-api.herokuapp.com/gimme/ich_iel" };
+export default function MemeContainer(this: any, props: any) {
+    const [currentSubreddit, setCurrentSubreddit] = useState("ich_iel");
 
-export default function MemeContainer(props: any) {
+    const URLs = {
+        memeapi: `https://meme-api.herokuapp.com/gimme/${currentSubreddit}`,
+    };
+
     const [isConnected, setIsConnected] = useState(false);
 
     useEffect(() => {
         requestMeme();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isConnected]);
+    }, [isConnected, currentSubreddit]);
 
-    const requestMeme = useCallback(async () => {
+    const requestMeme = async () => {
         const container = document.querySelector(".container");
 
         const headers = {
@@ -56,7 +60,7 @@ export default function MemeContainer(props: any) {
         } catch (error) {
             console.log("ERROR", error);
         }
-    }, []);
+    };
 
     const downloadImage = () => {
         //Grab the image source
@@ -68,8 +72,26 @@ export default function MemeContainer(props: any) {
         saveAs(image as string, "meme.png");
     };
 
+    const getSelectedSubreddit = (event: any) => {
+        setCurrentSubreddit(event.target.value);
+    };
+
     return (
         <>
+            <select
+                name="memes"
+                id="subreddit-menu"
+                onChange={getSelectedSubreddit}
+            >
+                <option value="Choose a Subreddit" disabled defaultChecked>
+                    Choose a subreddit
+                </option>
+                <option value="ich_iel">ich_iel</option>
+                <option value="dankmemes">dankmemes</option>
+                <option value="memes">Memes</option>
+                <option value="programmerhumor">Programmer Humor</option>
+            </select>
+
             <div className="container"></div>
             {isConnected ? (
                 <Button
