@@ -8,7 +8,7 @@ import { useState } from "react";
 
 function App() {
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
-    const [currentCategory, setCurrentCategory] = useState("Memes");
+    const [currentCategory, setCurrentCategory] = useState("Dad Jokes");
 
     const openHamburgerMenu = () => {
         if (!hamburgerMenuIsOpen) {
@@ -43,7 +43,12 @@ function App() {
                 )}
                 {currentCategory.match("Memes") ? <MemeContainer /> : ""}
                 {currentCategory.match("Chuck Norris Jokes") ? (
-                    <JokeContainer />
+                    <JokeContainer currentCategory={currentCategory} />
+                ) : (
+                    ""
+                )}
+                {currentCategory.match("Dad Jokes") ? (
+                    <JokeContainer currentCategory={currentCategory} />
                 ) : (
                     ""
                 )}

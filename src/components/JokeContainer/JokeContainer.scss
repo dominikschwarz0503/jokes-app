@@ -1,14 +1,23 @@
 .container {
+    position: relative;
     width: 300px;
     padding: 1rem 1rem;
     border: 1px solid aliceblue;
-    min-height: 4rem;
+    min-height: 10rem;
     border-radius: 0.8rem;
     margin-bottom: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
+
+    svg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding-top: 0.5rem;
+        padding-right: 0.5rem;
+    }
 
     p {
         color: white;

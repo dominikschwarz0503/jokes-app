@@ -16,7 +16,7 @@ export default function MemeContainer(this: any, props: any) {
     useEffect(() => {
         requestMeme();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isConnected, currentSubreddit]);
+    }, []);
 
     const requestMeme = async () => {
         const container = document.querySelector(".container");

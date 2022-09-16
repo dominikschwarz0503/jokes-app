@@ -31,7 +31,8 @@
       margin-top: 1.7rem;
       margin-right: 1rem;
       fill: white; }
-  .hamburger-menu-container ul {
+  .hamburger-menu-container .categories-list {
+    position: relative;
     width: 100%;
     min-height: 100vh;
     padding: 0;
@@ -44,5 +45,18 @@
     align-items: center;
     gap: 50px;
     flex-direction: column; }
+    .hamburger-menu-container .categories-list .social-icons-list {
+      position: absolute;
+      bottom: 0;
+      padding: 0;
+      margin-bottom: 12rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .hamburger-menu-container .categories-list .social-icons-list img {
+        width: 32px;
+        height: 32px;
+        color: white; }
 
 /*# sourceMappingURL=HamburgerMenu.css.map */
