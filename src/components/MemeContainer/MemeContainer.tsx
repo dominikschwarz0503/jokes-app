@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Button from "../Button/Button";
+import Carousel from "../Carousel/Carousel";
 import "./MemeContainer.css";
-import { saveAs } from "file-saver";
 
 export default function MemeContainer(this: any, props: any) {
-    const [currentSubreddit, setCurrentSubreddit] = useState("ich_iel");
+    const [currentSubreddit, setCurrentSubreddit] = useState("dankmemes");
+    const images: any = ["https://i.redd.it/kfyoyidhs7o91.gif"];
 
     const URLs = {
         memeapi: `https://meme-api.herokuapp.com/gimme/${currentSubreddit}`,
@@ -15,61 +15,29 @@ export default function MemeContainer(this: any, props: any) {
 
     useEffect(() => {
         requestMeme();
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const requestMeme = async () => {
-        const container = document.querySelector(".container");
+        const container = document.querySelector(".meme-container");
 
         const headers = {
             Accept: "application/json",
         };
 
         try {
-            if (navigator.onLine) {
-                await axios.get(URLs.memeapi, { headers }).then((response) => {
-                    setIsConnected(true);
+            await axios.get(URLs.memeapi, { headers }).then((response) => {
+                setIsConnected(true);
 
-                    const meme = document.createElement("img");
+                const meme = response.data.url;
 
-                    if (container?.childNodes !== undefined) {
-                        if (container?.childNodes.length >= 1) {
-                            container?.children[0].remove();
-                        }
-                    }
-
-                    meme.setAttribute("src", response.data.url);
-                    meme.setAttribute("width", "256");
-                    meme.setAttribute("height", "256");
-                    meme.classList.add("meme");
-                    container?.append(meme);
-                });
-            } else {
-                setIsConnected(false);
-                if (container?.childNodes !== undefined) {
-                    if (container?.childNodes.length >= 1) {
-                        container?.children[0].remove();
-                    }
-                }
-
-                const joke = document.createElement("p");
-                joke.innerHTML = "No internet connection.";
-                joke.classList.add("joke");
-                container?.append(joke);
-            }
+                images.push(meme);
+                console.log(images);
+            });
         } catch (error) {
             console.log("ERROR", error);
         }
-    };
-
-    const downloadImage = () => {
-        //Grab the image source
-        const image = document
-            .querySelector(".container")
-            ?.firstElementChild?.getAttribute("src");
-
-        //download to device
-        saveAs(image as string, "meme.png");
     };
 
     const getSelectedSubreddit = (event: any) => {
@@ -92,24 +60,8 @@ export default function MemeContainer(this: any, props: any) {
                 <option value="programmerhumor">Programmer Humor</option>
             </select>
 
-            <div className="container"></div>
-            {isConnected ? (
-                <Button
-                    className=""
-                    event={requestMeme}
-                    buttonText="Give me more memes!"
-                />
-            ) : (
-                ""
-            )}
-            {isConnected ? (
-                // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                <a className="download-link" onClick={downloadImage}>
-                    Or download this meme
-                </a>
-            ) : (
-                ""
-            )}
+            <Carousel content={images} />
+            <div className="meme-container"></div>
         </>
     );
 }

@@ -8,7 +8,7 @@ import { useState } from "react";
 
 function App() {
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
-    const [currentCategory, setCurrentCategory] = useState("Dad Jokes");
+    const [currentCategory, setCurrentCategory] = useState("Memes");
 
     const openHamburgerMenu = () => {
         if (!hamburgerMenuIsOpen) {
