@@ -12,7 +12,8 @@ export default function Carousel(props: any) {
             .get(url)
             .then((response) => setData(response.data.memes))
             .catch((error) => console.log(error));
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (data.length !== 0) {
