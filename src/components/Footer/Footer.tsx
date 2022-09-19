@@ -14,7 +14,7 @@ export default function Footer() {
                         height={48}
                         alt="react logo"
                     />{" "}
-                    by Dominik & Justin
+                    by Dominik, Justin & Max
                 </p>
             </footer>
         </>

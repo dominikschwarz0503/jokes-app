@@ -1,14 +1,15 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import MemeContainer from "./components/MemeContainer/MemeContainer";
 import HamburgerMenu from "./components/HamburgerMenu/HamburgerMenu";
 import JokeContainer from "./components/JokeContainer/JokeContainer";
 import { useState } from "react";
+import Carousel from "./components/Carousel/Carousel";
 
 function App() {
+    const [currentSubreddit, setCurrentSubreddit] = useState("programmerhumor");
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
-    const [currentCategory, setCurrentCategory] = useState("Dad Jokes");
+    const [currentCategory, setCurrentCategory] = useState("Memes");
 
     const openHamburgerMenu = () => {
         if (!hamburgerMenuIsOpen) {
@@ -41,7 +42,11 @@ function App() {
                 ) : (
                     ""
                 )}
-                {currentCategory.match("Memes") ? <MemeContainer /> : ""}
+                {currentCategory.match("Memes") ? (
+                    <Carousel currentSubreddit={currentSubreddit} />
+                ) : (
+                    ""
+                )}
                 {currentCategory.match("Chuck Norris Jokes") ? (
                     <JokeContainer currentCategory={currentCategory} />
                 ) : (
