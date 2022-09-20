@@ -13,11 +13,15 @@
   .slide .nsfw-marker {
     background-color: #bb0808;
     padding: 0.5rem;
-    border-radius: 0.5rem; }
+    border-radius: 0.5rem;
+    margin-top: 1rem; }
+  .slide .source-link {
+    margin-top: 1rem;
+    color: #61dafb; }
 
 .meme-image {
-  width: 100%;
-  height: 50%;
+  width: 80%;
+  height: 50vh;
   border-radius: 0.8rem; }
 
 /*# sourceMappingURL=CarouselSlide.css.map */

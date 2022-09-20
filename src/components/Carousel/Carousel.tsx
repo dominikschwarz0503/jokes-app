@@ -20,8 +20,6 @@ export default function Carousel(props: any) {
         if (data.length !== 0) {
             setIsLoading(false);
         }
-
-        console.log(data);
     }, [data]);
 
     return (
@@ -38,6 +36,7 @@ export default function Carousel(props: any) {
                                 isNsfw={meme.nsfw}
                                 imgUrl={meme.url}
                                 key={idx}
+                                sourceUrl={meme.postLink}
                             />
                         ))
                     )}

@@ -7,7 +7,7 @@ import { useState } from "react";
 import Carousel from "./components/Carousel/Carousel";
 
 function App() {
-    const [currentSubreddit] = useState("dankmemes");
+    const [currentSubreddit] = useState("wasletztepreis");
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
     const [currentCategory, setCurrentCategory] = useState("Memes");
 

@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./CarouselSlide.css";
+import { truncate } from "lodash";
 export default function CarouselSlide(props: any) {
-    const [isNsfw, setIsNsfw] = useState(false);
+    const [isNsfw, setIsNsfw] = useState(true);
 
     const requestFullScreen = (e: any) => {
         e.target?.requestFullscreen();
     };
 
+    const cutString = (string: string) => {
+        return truncate(string, {
+            length: 120,
+        });
+    };
+
     return (
         <>
             <div className="slide" key={props.keyProp}>
-                <h1 className="meme-title">{props.title}</h1>
+                <h1 className="meme-title">{cutString(props.title)}</h1>
                 <p className="author-text">posted by u/{props.author}</p>
-                {props.isNsfw && !isNsfw ? (
+                {props.isNsfw && isNsfw ? (
                     <span
                         className="nsfw-marker"
-                        onClick={() => setIsNsfw(true)}
+                        onClick={() => setIsNsfw(false)}
                     >
                         NSFW
                     </span>
@@ -26,6 +33,19 @@ export default function CarouselSlide(props: any) {
                         alt="Meme"
                         onClick={requestFullScreen}
                     />
+                )}
+                <a href={props.sourceUrl} className="source-link">
+                    View original Post
+                </a>
+                {!isNsfw ? (
+                    <span
+                        onClick={() => setIsNsfw(true)}
+                        className="nsfw-marker"
+                    >
+                        Mark as NSFW
+                    </span>
+                ) : (
+                    ""
                 )}
             </div>
         </>
