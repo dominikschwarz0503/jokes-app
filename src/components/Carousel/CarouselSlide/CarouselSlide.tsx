@@ -18,7 +18,17 @@ export default function CarouselSlide(props: any) {
         <>
             <div className="slide" key={props.keyProp}>
                 <h1 className="meme-title">{cutString(props.title)}</h1>
-                <p className="author-text">posted by u/{props.author}</p>
+                <p className="author-text">
+                    {" "}
+                    posted by{" "}
+                    <a
+                        href={`https://reddit.com/user/${props.author}`}
+                        className="source-link"
+                        target="_blank"
+                    >
+                        u/{props.author}
+                    </a>
+                </p>
                 {props.isNsfw && isNsfw ? (
                     <span
                         className="nsfw-marker"
