@@ -1,0 +1,23 @@
+.slide {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 100%;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start; }
+  .slide .meme-title {
+    font-size: 1.5rem;
+    margin: 0; }
+  .slide .author-text {
+    font-size: 0.8rem; }
+  .slide .nsfw-marker {
+    background-color: #bb0808;
+    padding: 0.5rem;
+    border-radius: 0.5rem; }
+
+.meme-image {
+  width: 100%;
+  height: 50%;
+  border-radius: 0.8rem; }
+
+/*# sourceMappingURL=CarouselSlide.css.map */

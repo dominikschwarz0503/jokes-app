@@ -1,13 +1,14 @@
 import axios from "axios";
 import "./Carousel.css";
 import { useEffect, useState } from "react";
+import CarouselSlide from "./CarouselSlide/CarouselSlide";
 
 export default function Carousel(props: any) {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {
-        const url = `https://meme-api.herokuapp.com/gimme/${props.currentSubreddit}/5`;
+        const url = `https://meme-api.herokuapp.com/gimme/${props.currentSubreddit}/10`;
         axios
             .get(url)
             .then((response) => setData(response.data.memes))
@@ -30,8 +31,14 @@ export default function Carousel(props: any) {
                     {isLoading ? (
                         <p>Loading...</p>
                     ) : (
-                        data.map((meme: any, key) => (
-                            <img src={meme.url} alt="Meme" key={key} />
+                        data.map((meme: any, idx) => (
+                            <CarouselSlide
+                                title={meme.title}
+                                author={meme.author}
+                                isNsfw={meme.nsfw}
+                                imgUrl={meme.url}
+                                key={idx}
+                            />
                         ))
                     )}
                 </div>
