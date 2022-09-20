@@ -4,7 +4,7 @@ export default function CarouselSlide(props: any) {
     const [isNsfw, setIsNsfw] = useState(false);
 
     const requestFullScreen = (e: any) => {
-        document.querySelector(".meme-image")?.requestFullscreen();
+        e.target?.requestFullscreen();
     };
 
     return (
