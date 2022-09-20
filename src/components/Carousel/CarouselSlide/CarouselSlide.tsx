@@ -25,6 +25,7 @@ export default function CarouselSlide(props: any) {
                         href={`https://reddit.com/user/${props.author}`}
                         className="source-link"
                         target="_blank"
+                        rel="noreferrer"
                     >
                         u/{props.author}
                     </a>
