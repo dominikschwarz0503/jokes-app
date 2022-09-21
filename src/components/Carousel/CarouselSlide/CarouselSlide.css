@@ -2,9 +2,15 @@
   display: flex;
   flex-direction: column;
   flex: 1 0 100%;
+  max-width: 720px;
   justify-content: center;
   align-items: center;
-  scroll-snap-align: start; }
+  scroll-snap-align: start;
+  background-color: #424752;
+  height: 32rem;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.8);
+  border-radius: 0.8rem;
+  padding: 2rem 0; }
   .slide .meme-title {
     font-size: 1.5rem;
     margin: 0; }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./CarouselSlide.css";
-import { truncate } from "lodash";
+import truncate from "lodash/truncate";
+
 export default function CarouselSlide(props: any) {
     const [isNsfw, setIsNsfw] = useState(true);
 
@@ -9,9 +10,13 @@ export default function CarouselSlide(props: any) {
     };
 
     const cutString = (string: string) => {
-        return truncate(string, {
-            length: 120,
-        });
+        if (string.length <= 1) {
+            return "A meme";
+        } else {
+            return truncate(string, {
+                length: 120,
+            });
+        }
     };
 
     return (
@@ -45,7 +50,12 @@ export default function CarouselSlide(props: any) {
                         onClick={requestFullScreen}
                     />
                 )}
-                <a href={props.sourceUrl} className="source-link">
+                <a
+                    href={props.sourceUrl}
+                    className="source-link"
+                    target="_blank"
+                    rel="noreferrer"
+                >
                     View original Post
                 </a>
                 {!isNsfw ? (

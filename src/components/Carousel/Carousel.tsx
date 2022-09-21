@@ -3,6 +3,11 @@ import "./Carousel.css";
 import { useEffect, useState } from "react";
 import CarouselSlide from "./CarouselSlide/CarouselSlide";
 
+/**
+ * Renders a carousel
+ * @param props
+ * @returns
+ */
 export default function Carousel(props: any) {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState<any[]>([]);
@@ -25,7 +30,10 @@ export default function Carousel(props: any) {
     return (
         <>
             <div className="carousel-container">
-                <div className="carousel-content">
+                <div
+                    className="carousel-content"
+                    onScroll={() => console.log(window.scrollX)}
+                >
                     {isLoading ? (
                         <p>Loading...</p>
                     ) : (
