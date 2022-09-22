@@ -10,7 +10,7 @@ import CarouselSlide from "./CarouselSlide/CarouselSlide";
  */
 export default function Carousel(props: any) {
     const [isLoading, setIsLoading] = useState(true);
-    const [isGettingNewData, setIsGettingNewData] = useState(false);
+    const [isGettingNewData, setIsGettingNewData] = useState(true);
     const [data, setData] = useState<any[]>([]);
 
     const loadMemes = async () => {
@@ -22,8 +22,8 @@ export default function Carousel(props: any) {
                 response.data.memes.forEach((meme: any) => {
                     newMemes.push(meme);
                 });
-                setIsGettingNewData(false);
                 setData((oldMemes) => [...oldMemes, ...newMemes]);
+                setIsGettingNewData(false);
             })
             .catch((error) => console.log(error));
     };
@@ -38,17 +38,16 @@ export default function Carousel(props: any) {
     };
 
     useEffect(() => {
-        console.log("load memes from Hook...");
-        loadMemes();
-        // document
-        //     .querySelector(".carousel-content")
-        //     ?.addEventListener("scroll", handleScroll);
+        if (isGettingNewData) {
+            loadMemes();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isGettingNewData]);
 
     useEffect(() => {
         if (data.length !== 0) {
             setIsLoading(false);
+            setIsGettingNewData(false);
         }
     }, [data]);
 
