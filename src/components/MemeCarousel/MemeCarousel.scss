@@ -12,7 +12,13 @@
         height: 101%;
         display: flex;
         overflow-x: auto;
+        scrollbar-width: none; //firefox
         gap: 50px;
         scroll-snap-type: x mandatory;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
     }
 }
