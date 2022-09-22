@@ -10,16 +10,41 @@ import CarouselSlide from "./CarouselSlide/CarouselSlide";
  */
 export default function Carousel(props: any) {
     const [isLoading, setIsLoading] = useState(true);
+    const [isGettingNewData, setIsGettingNewData] = useState(false);
     const [data, setData] = useState<any[]>([]);
 
-    useEffect(() => {
+    const loadMemes = async () => {
         const url = `https://meme-api.herokuapp.com/gimme/${props.currentSubreddit}/10`;
-        axios
+        await axios
             .get(url)
-            .then((response) => setData(response.data.memes))
+            .then((response) => {
+                const newMemes: any = [];
+                response.data.memes.forEach((meme: any) => {
+                    newMemes.push(meme);
+                });
+                setIsGettingNewData(false);
+                setData((oldMemes) => [...oldMemes, ...newMemes]);
+            })
             .catch((error) => console.log(error));
+    };
+
+    const handleScroll = (event: any) => {
+        if (
+            window.innerWidth + event.target.scrollLeft + 1 >=
+            event.target.scrollWidth
+        ) {
+            setIsGettingNewData(true);
+        }
+    };
+
+    useEffect(() => {
+        console.log("load memes from Hook...");
+        loadMemes();
+        // document
+        //     .querySelector(".carousel-content")
+        //     ?.addEventListener("scroll", handleScroll);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [isGettingNewData]);
 
     useEffect(() => {
         if (data.length !== 0) {
@@ -30,10 +55,7 @@ export default function Carousel(props: any) {
     return (
         <>
             <div className="carousel-container">
-                <div
-                    className="carousel-content"
-                    onScroll={() => console.log(window.scrollX)}
-                >
+                <div className="carousel-content" onScroll={handleScroll}>
                     {isLoading ? (
                         <p>Loading...</p>
                     ) : (
