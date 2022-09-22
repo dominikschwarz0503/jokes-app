@@ -1,20 +1,30 @@
 import axios from "axios";
-import "./Carousel.css";
-import { useEffect, useState } from "react";
-import CarouselSlide from "./CarouselSlide/CarouselSlide";
+import "./MemeCarousel.css";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
+import CarouselSlide from "./MemeCarouselSlide/MemeCarouselSlide";
 
 /**
  * Renders a carousel
  * @param props
  * @returns
  */
-export default function Carousel(props: any) {
+const Carousel = forwardRef((props: any, ref: any) => {
+    const [currentSubreddit, setCurrentSubreddit] = useState(
+        props.currentSubreddit
+    );
     const [isLoading, setIsLoading] = useState(true);
     const [isGettingNewData, setIsGettingNewData] = useState(true);
     const [data, setData] = useState<any[]>([]);
 
+    useImperativeHandle(ref, () => ({
+        loadMoreMemes(subreddit: any) {
+            setCurrentSubreddit(props.currentSubreddit);
+            loadMemes();
+        },
+    }));
+
     const loadMemes = async () => {
-        const url = `https://meme-api.herokuapp.com/gimme/${props.currentSubreddit}/10`;
+        const url = `https://meme-api.herokuapp.com/gimme/${currentSubreddit}/10`;
         await axios
             .get(url)
             .then((response) => {
@@ -22,6 +32,9 @@ export default function Carousel(props: any) {
                 response.data.memes.forEach((meme: any) => {
                     newMemes.push(meme);
                 });
+
+                // setData(newMemes);
+
                 setData((oldMemes) => [...oldMemes, ...newMemes]);
                 setIsGettingNewData(false);
             })
@@ -41,6 +54,7 @@ export default function Carousel(props: any) {
         if (isGettingNewData) {
             loadMemes();
         }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isGettingNewData]);
 
@@ -73,4 +87,6 @@ export default function Carousel(props: any) {
             </div>
         </>
     );
-}
+});
+
+export default Carousel;

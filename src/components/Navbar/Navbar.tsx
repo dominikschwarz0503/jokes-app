@@ -14,11 +14,11 @@ export default function Navbar(props: any) {
                         <img
                             src={peepoPic}
                             alt="of peepo the frog"
-                            width={56}
-                            height={48}
+                            width={48}
+                            height={36}
                         />
                     </li>
-                    <li>{props.navText}</li>
+                    <li>r/{props.navText}</li>
                     <li>
                         <svg
                             onClick={openHamburgerMenu}

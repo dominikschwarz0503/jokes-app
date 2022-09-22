@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./CarouselSlide.css";
+import "./MemeCarouselSlide.css";
 import truncate from "lodash/truncate";
 
 export default function CarouselSlide(props: any) {
