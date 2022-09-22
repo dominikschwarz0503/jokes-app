@@ -22,7 +22,8 @@ export default function CarouselSlide(props: any) {
     return (
         <>
             <div className="slide" key={props.keyProp}>
-                <h1 className="meme-title">{cutString(props.title)}</h1>
+                <h1 className="subreddit-title">r/{props.subreddit}</h1>
+                <h2 className="meme-title">{cutString(props.title)}</h2>
                 <p className="author-text">
                     {" "}
                     posted by{" "}

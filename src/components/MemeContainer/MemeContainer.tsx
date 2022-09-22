@@ -1,31 +1,25 @@
-import { forwardRef, useImperativeHandle, useRef } from "react";
+import { useRef, useState } from "react";
 import MemeCarousel from "../MemeCarousel/MemeCarousel";
 import SubredditCarousel from "../SubredditCarousel/SubredditCarousel";
 
-const MemeContainer = forwardRef((props: any, ref: any) => {
+export default function MemeContainer(props: any) {
     const childRef = useRef<any>(null);
-    let subreddit: any;
+    const [currentSubreddit, setCurrentSubreddit] = useState("gymmemes");
 
     const changeSubreddit = (e: any) => {
-        subreddit = e.target.getAttribute("data-subreddit");
+        const subreddit = e.target.getAttribute("data-subreddit");
         props.changeSubreddit(subreddit);
+        setCurrentSubreddit(subreddit);
+        childRef.current.function1(subreddit);
     };
-
-    useImperativeHandle(ref, () => ({
-        childFunction1() {
-            childRef.current.loadMoreMemes(subreddit);
-        },
-    }));
 
     return (
         <>
-            <SubredditCarousel changeSubreddit={changeSubreddit} />
-            <MemeCarousel
-                currentSubreddit={props.currentSubreddit}
-                ref={childRef}
+            <SubredditCarousel
+                changeSubreddit={changeSubreddit}
+                currentSubreddit={currentSubreddit}
             />
+            <MemeCarousel currentSubreddit={currentSubreddit} ref={childRef} />
         </>
     );
-});
-
-export default MemeContainer;
+}

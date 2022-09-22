@@ -1,5 +1,5 @@
 .subreddit-container {
-  margin-top: 2.5rem;
+  margin-top: 4rem;
   background-color: #424752;
   height: 48px;
   width: 100%;
@@ -10,7 +10,7 @@
   justify-content: left;
   align-items: center;
   gap: 16px;
-  overflow-x: auto; }
+  overflow-x: scroll; }
   .subreddit-container .subreddit-icon {
     width: 48px;
     height: 48px;

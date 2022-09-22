@@ -1,16 +1,16 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import HamburgerMenu from "./components/HamburgerMenu/HamburgerMenu";
 import JokeContainer from "./components/JokeContainer/JokeContainer";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import MemeContainer from "./components/MemeContainer/MemeContainer";
 
 function App() {
-    const childRef = useRef<any>(null);
-    const [currentSubreddit, setCurrentSubreddit] = useState("wasletztepreis");
+    const [currentSubreddit, setCurrentSubreddit] = useState("gymmemes");
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
     const [currentCategory, setCurrentCategory] = useState("Memes");
+
+    useEffect(() => {}, [currentSubreddit]);
 
     const openHamburgerMenu = () => {
         if (!hamburgerMenuIsOpen) {
@@ -28,16 +28,14 @@ function App() {
     };
 
     const changeSubreddit = (subreddit: string) => {
-        console.log("changed memes!");
         setCurrentSubreddit(subreddit);
-        childRef?.current?.childFunction1();
     };
 
     return (
         <div className="App">
             <header className="App-header">
                 <Navbar
-                    navText={currentSubreddit}
+                    navText={currentCategory}
                     openHamburgerMenu={openHamburgerMenu}
                 />
                 {hamburgerMenuIsOpen ? (
@@ -50,11 +48,7 @@ function App() {
                     ""
                 )}
                 {currentCategory.match("Memes") ? (
-                    <MemeContainer
-                        currentSubreddit={currentSubreddit}
-                        changeSubreddit={changeSubreddit}
-                        ref={childRef}
-                    />
+                    <MemeContainer changeSubreddit={changeSubreddit} />
                 ) : (
                     ""
                 )}
@@ -68,7 +62,7 @@ function App() {
                 ) : (
                     ""
                 )}
-                <Footer />
+                {/* <Footer /> */}
             </header>
         </div>
     );

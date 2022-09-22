@@ -18,7 +18,7 @@ export default function Navbar(props: any) {
                             height={36}
                         />
                     </li>
-                    <li>r/{props.navText}</li>
+                    <li>{props.navText}</li>
                     <li>
                         <svg
                             onClick={openHamburgerMenu}

@@ -71,16 +71,6 @@ export default function SubredditCarousel(props: any) {
                         data-subreddit="memes"
                     />
                 </div>
-                <div className="subreddit-icon">
-                    <img
-                        src={memes}
-                        alt="Subreddit"
-                        width={48}
-                        height={48}
-                        onClick={(e) => props.changeSubreddit(e)}
-                        data-subreddit="schwarzerhumor"
-                    />
-                </div>
             </div>
         </>
     );

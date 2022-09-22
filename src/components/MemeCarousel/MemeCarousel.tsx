@@ -8,24 +8,32 @@ import CarouselSlide from "./MemeCarouselSlide/MemeCarouselSlide";
  * @param props
  * @returns
  */
-const Carousel = forwardRef((props: any, ref: any) => {
+const MemeCarousel = forwardRef((props: any, ref: any) => {
     const [currentSubreddit, setCurrentSubreddit] = useState(
         props.currentSubreddit
     );
+    const [subredditHasChanged, setSubredditHasChanged] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [isGettingNewData, setIsGettingNewData] = useState(true);
     const [data, setData] = useState<any[]>([]);
 
     useImperativeHandle(ref, () => ({
-        loadMoreMemes(subreddit: any) {
-            setCurrentSubreddit(props.currentSubreddit);
-            loadMemes();
+        function1(subreddit: string) {
+            const carousel = document.querySelector(".carousel-content");
+            if (carousel != null) {
+                carousel.scrollLeft = 0;
+            }
+            setIsGettingNewData(true);
+            setCurrentSubreddit(subreddit);
+            setSubredditHasChanged(true);
         },
     }));
 
-    const loadMemes = async () => {
+    const loadMemes = () => {
+        console.log("getting memes...");
         const url = `https://meme-api.herokuapp.com/gimme/${currentSubreddit}/10`;
-        await axios
+        console.log(url);
+        axios
             .get(url)
             .then((response) => {
                 const newMemes: any = [];
@@ -33,10 +41,14 @@ const Carousel = forwardRef((props: any, ref: any) => {
                     newMemes.push(meme);
                 });
 
-                // setData(newMemes);
+                if (subredditHasChanged) {
+                    setData(newMemes);
+                } else {
+                    setData((oldMemes) => [...oldMemes, ...newMemes]);
+                }
 
-                setData((oldMemes) => [...oldMemes, ...newMemes]);
                 setIsGettingNewData(false);
+                setSubredditHasChanged(false);
             })
             .catch((error) => console.log(error));
     };
@@ -56,7 +68,7 @@ const Carousel = forwardRef((props: any, ref: any) => {
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isGettingNewData]);
+    }, [isGettingNewData, currentSubreddit]);
 
     useEffect(() => {
         if (data.length !== 0) {
@@ -80,6 +92,7 @@ const Carousel = forwardRef((props: any, ref: any) => {
                                 imgUrl={meme.url}
                                 key={idx}
                                 sourceUrl={meme.postLink}
+                                subreddit={meme.subreddit}
                             />
                         ))
                     )}
@@ -89,4 +102,4 @@ const Carousel = forwardRef((props: any, ref: any) => {
     );
 });
 
-export default Carousel;
+export default MemeCarousel;
