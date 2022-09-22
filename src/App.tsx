@@ -5,9 +5,10 @@ import HamburgerMenu from "./components/HamburgerMenu/HamburgerMenu";
 import JokeContainer from "./components/JokeContainer/JokeContainer";
 import { useState } from "react";
 import Carousel from "./components/Carousel/Carousel";
+import MemeContainer from "./components/MemeContainer/MemeContainer";
 
 function App() {
-    const [currentSubreddit] = useState("gymmemes");
+    const [currentSubreddit] = useState("wasletztepreis");
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
     const [currentCategory, setCurrentCategory] = useState("Memes");
 
@@ -43,7 +44,7 @@ function App() {
                     ""
                 )}
                 {currentCategory.match("Memes") ? (
-                    <Carousel currentSubreddit={currentSubreddit} />
+                    <MemeContainer currentSubreddit={currentSubreddit} />
                 ) : (
                     ""
                 )}
