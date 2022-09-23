@@ -1,3 +1,21 @@
+.backdrop {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background-color: black;
+  opacity: 1;
+  z-index: 998;
+  transition: opacity 0.3s ease; }
+  .backdrop .easteregg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50%;
+    width: 100%;
+    z-index: 999;
+    transform: translateY(50%); }
+
 nav {
   height: 48px;
   width: 100%;

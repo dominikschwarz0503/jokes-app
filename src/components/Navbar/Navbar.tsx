@@ -1,13 +1,41 @@
-import "./Navbar.css";
 import peepoPic from "../../img/logo192.png";
+import { useState } from "react";
+import easterEgg from "../../img/nett-hier-easteregg.jpg";
+import "./Navbar.css";
 
 export default function Navbar(props: any) {
+    const [timesPressed, setTimesPressed] = useState(0);
+    const [eastereggTriggered, isEasterEggTriggered] = useState(false);
+
     const openHamburgerMenu = () => {
         props.openHamburgerMenu();
     };
 
+    const triggerEasterEgg = () => {
+        setTimesPressed(timesPressed + 1);
+        if (timesPressed >= 2) {
+            setTimesPressed(0);
+            isEasterEggTriggered(true);
+
+            setTimeout(() => {
+                isEasterEggTriggered(false);
+            }, 3000);
+        }
+    };
+
     return (
         <>
+            {eastereggTriggered ? (
+                <div className={"backdrop"}>
+                    <img
+                        className="easteregg"
+                        src={easterEgg}
+                        alt="easteregg"
+                    />
+                </div>
+            ) : (
+                ""
+            )}
             <nav>
                 <ul>
                     <li>
@@ -16,6 +44,7 @@ export default function Navbar(props: any) {
                             alt="of peepo the frog"
                             width={48}
                             height={36}
+                            onClick={triggerEasterEgg}
                         />
                     </li>
                     <li>{props.navText}</li>
