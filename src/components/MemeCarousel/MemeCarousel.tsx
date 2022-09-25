@@ -80,7 +80,11 @@ const MemeCarousel = forwardRef((props: any, ref: any) => {
     return (
         <>
             <div className="carousel-container">
-                <div className="carousel-content" onScroll={handleScroll}>
+                <div
+                    className="carousel-content"
+                    id="carousel"
+                    onScroll={handleScroll}
+                >
                     {isLoading ? (
                         <p>Loading...</p>
                     ) : (
