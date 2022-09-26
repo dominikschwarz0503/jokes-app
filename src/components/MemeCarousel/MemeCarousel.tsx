@@ -29,6 +29,7 @@ const MemeCarousel = forwardRef((props: any, ref: any) => {
         },
     }));
 
+    //Loads the memes from the webscraping api through a GET Request and passes its response in an new array
     const loadMemes = () => {
         console.log("getting memes...");
         const url = `https://meme-api.herokuapp.com/gimme/${currentSubreddit}/10`;
@@ -41,8 +42,11 @@ const MemeCarousel = forwardRef((props: any, ref: any) => {
                     newMemes.push(meme);
                 });
 
+                //If we changed the subreddit, clear the old array and set up a new one
                 if (subredditHasChanged) {
                     setData(newMemes);
+                    //If we received more memes through infinite loading,
+                    //keep the old memes and add the new ones to the end of the array
                 } else {
                     setData((oldMemes) => [...oldMemes, ...newMemes]);
                 }
@@ -53,6 +57,7 @@ const MemeCarousel = forwardRef((props: any, ref: any) => {
             .catch((error) => console.log(error));
     };
 
+    //checks if we reached the end of the scroll container and loads more memes
     const handleScroll = (event: any) => {
         if (
             window.innerWidth + event.target.scrollLeft + 1 >=

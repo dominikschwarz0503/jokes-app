@@ -7,6 +7,11 @@ import kreisWichs1 from "../../img/subreddit-kreiswichs1.png";
 import memes from "../../img/subreddit-memes.png";
 import wasLetztePreis from "../../img/subreddit-wasletztepreis.png";
 
+/**
+ * Renders a subreddit carousel to easily switch between different subreddits
+ * @param props
+ * @returns
+ */
 export default function SubredditCarousel(props: any) {
     return (
         <>

@@ -3,6 +3,11 @@ import { useState } from "react";
 import easterEgg from "../../img/nett-hier-easteregg.jpg";
 import "./Navbar.css";
 
+/**
+ * Renders a Navbar Component which contains the Hamburger Menu Icon as well as the secret easteregg
+ * @param props
+ * @returns
+ */
 export default function Navbar(props: any) {
     const [timesPressed, setTimesPressed] = useState(0);
     const [eastereggTriggered, isEasterEggTriggered] = useState(false);

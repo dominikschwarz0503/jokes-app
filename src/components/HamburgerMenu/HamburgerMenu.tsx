@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import "./HamburgerMenu.css";
 
+/**
+ * Renders the Hamburger Menu for easy access to the different categories within the app
+ * @param props
+ * @returns
+ */
 export default function HamburgerMenu(props: any) {
     useEffect(() => {
         setTimeout(() => {

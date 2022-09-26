@@ -2,6 +2,11 @@ import { useRef, useState } from "react";
 import MemeCarousel from "../MemeCarousel/MemeCarousel";
 import SubredditCarousel from "../SubredditCarousel/SubredditCarousel";
 
+/**
+ * Renders a MemeContainer Component, which contains both the SubredditCarousel as well as the MemeCarousel Component
+ * @param props
+ * @returns
+ */
 export default function MemeContainer(props: any) {
     const childRef = useRef<any>(null);
     const [currentSubreddit, setCurrentSubreddit] = useState("gymmemes");

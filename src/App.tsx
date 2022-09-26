@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import MemeContainer from "./components/MemeContainer/MemeContainer";
 import Credits from "./components/Credits/Credits";
 
+/**
+ * Renders the whole app
+ * @returns
+ */
 function App() {
     const [currentSubreddit, setCurrentSubreddit] = useState("gymmemes");
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
@@ -64,7 +68,6 @@ function App() {
                     ""
                 )}
                 {currentCategory.match("Credits") ? <Credits /> : ""}
-                {/* <Footer /> */}
             </header>
         </div>
     );

@@ -8,6 +8,11 @@ const URLS = {
     chucknorrisapi: "https://api.chucknorris.io/jokes/random",
 };
 
+/**
+ * Renders a JokeContainer Component
+ * @param props
+ * @returns
+ */
 export default function JokeContainer(props: any) {
     const [isConnected, setIsConnected] = useState(true);
 
@@ -16,6 +21,7 @@ export default function JokeContainer(props: any) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.currentCategory]);
 
+    //Makes a GET request to the dadjokes or chuck norris api and sets its response in a paragraph tag
     const requestJokes = async () => {
         const joke = document.createElement("p");
         const container = document.querySelector(".container");
@@ -70,6 +76,7 @@ export default function JokeContainer(props: any) {
         }
     };
 
+    //Copies the joke text to the user's clipboard
     const copyJoke = () => {
         const joke = document.querySelector(".joke");
 
