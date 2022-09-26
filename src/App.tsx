@@ -9,7 +9,7 @@ import Credits from "./components/Credits/Credits";
 function App() {
     const [currentSubreddit, setCurrentSubreddit] = useState("gymmemes");
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
-    const [currentCategory, setCurrentCategory] = useState("Credits");
+    const [currentCategory, setCurrentCategory] = useState("Memes");
 
     useEffect(() => {}, [currentSubreddit]);
 
