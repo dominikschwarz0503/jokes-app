@@ -10,7 +10,7 @@ export default function HamburgerMenu(props: any) {
         }, 1);
     });
 
-    const categories = ["Memes", "Chuck Norris Jokes", "Dad Jokes"];
+    const categories = ["Memes", "Chuck Norris Jokes", "Dad Jokes", "Credits"];
 
     const closeHamburgerMenu = () => {
         const container = document.querySelector(".hamburger-menu-container");

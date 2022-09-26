@@ -4,11 +4,12 @@ import HamburgerMenu from "./components/HamburgerMenu/HamburgerMenu";
 import JokeContainer from "./components/JokeContainer/JokeContainer";
 import { useEffect, useState } from "react";
 import MemeContainer from "./components/MemeContainer/MemeContainer";
+import Credits from "./components/Credits/Credits";
 
 function App() {
     const [currentSubreddit, setCurrentSubreddit] = useState("gymmemes");
     const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
-    const [currentCategory, setCurrentCategory] = useState("Memes");
+    const [currentCategory, setCurrentCategory] = useState("Credits");
 
     useEffect(() => {}, [currentSubreddit]);
 
@@ -62,6 +63,7 @@ function App() {
                 ) : (
                     ""
                 )}
+                {currentCategory.match("Credits") ? <Credits /> : ""}
                 {/* <Footer /> */}
             </header>
         </div>
