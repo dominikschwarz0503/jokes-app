@@ -19,7 +19,7 @@ export default function Navbar(props: any) {
 
             setTimeout(() => {
                 isEasterEggTriggered(false);
-            }, 3000);
+            }, 5000);
         }
     };
 

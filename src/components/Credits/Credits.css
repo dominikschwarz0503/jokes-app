@@ -4,7 +4,8 @@
   background-color: #424752;
   border-radius: 0.5rem;
   margin-top: 5rem;
-  overflow: hidden; }
+  overflow: hidden;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.8); }
   .credits-container .technology-stack {
     animation: credits-scroll 60s linear infinite;
     transition: transform 0.3s; }
