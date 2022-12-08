@@ -31,12 +31,11 @@ const MemeCarousel = forwardRef((props: any, ref: any) => {
 
     //Loads the memes from the webscraping api through a GET Request and passes its response in an new array
     const loadMemes = () => {
-        console.log("getting memes...");
         const url = `https://meme-api.herokuapp.com/gimme/${currentSubreddit}/10`;
         console.log(url);
         axios
             .get(url)
-            .then((response) => {
+            .then((response: any) => {
                 const newMemes: any = [];
                 response.data.memes.forEach((meme: any) => {
                     newMemes.push(meme);
@@ -48,13 +47,13 @@ const MemeCarousel = forwardRef((props: any, ref: any) => {
                     //If we received more memes through infinite loading,
                     //keep the old memes and add the new ones to the end of the array
                 } else {
-                    setData((oldMemes) => [...oldMemes, ...newMemes]);
+                    setData((oldMemes: any) => [...oldMemes, ...newMemes]);
                 }
 
                 setIsGettingNewData(false);
                 setSubredditHasChanged(false);
             })
-            .catch((error) => console.log(error));
+            .catch((error: any) => console.log(error));
     };
 
     //checks if we reached the end of the scroll container and loads more memes
