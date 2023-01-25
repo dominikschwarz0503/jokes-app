@@ -11,66 +11,61 @@ import Credits from "./components/Credits/Credits";
  * @returns
  */
 function App() {
-    const [currentSubreddit, setCurrentSubreddit] = useState("gymmemes");
-    const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
-    const [currentCategory, setCurrentCategory] = useState("Memes");
+  const [currentSubreddit, setCurrentSubreddit] = useState("gymmemes");
+  const [hamburgerMenuIsOpen, setHamburgerMenuIsOpen] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState("Memes");
 
-    useEffect(() => {}, [currentSubreddit]);
+  useEffect(() => {}, [currentSubreddit]);
 
-    const openHamburgerMenu = () => {
-        if (!hamburgerMenuIsOpen) {
-            setHamburgerMenuIsOpen(true);
-        }
-    };
+  const openHamburgerMenu = () => {
+    if (!hamburgerMenuIsOpen) {
+      setHamburgerMenuIsOpen(true);
+    }
+  };
 
-    const closeHamburgerMenu = () => {
-        if (hamburgerMenuIsOpen) {
-            //Wait for the animation to finish, then close
-            setTimeout(() => {
-                setHamburgerMenuIsOpen(false);
-            }, 500);
-        }
-    };
+  const closeHamburgerMenu = () => {
+    if (hamburgerMenuIsOpen) {
+      //Wait for the animation to finish, then close
+      setTimeout(() => {
+        setHamburgerMenuIsOpen(false);
+      }, 500);
+    }
+  };
 
-    const changeSubreddit = (subreddit: string) => {
-        setCurrentSubreddit(subreddit);
-    };
+  const changeSubreddit = (subreddit: string) => {
+    setCurrentSubreddit(subreddit);
+  };
 
-    return (
-        <div className="App">
-            <header className="App-header">
-                <Navbar
-                    navText={currentCategory}
-                    openHamburgerMenu={openHamburgerMenu}
-                />
-                {hamburgerMenuIsOpen ? (
-                    <HamburgerMenu
-                        active={hamburgerMenuIsOpen}
-                        closeHamburgerMenu={closeHamburgerMenu}
-                        setCurrentCategory={(p: any) => setCurrentCategory(p)}
-                    />
-                ) : (
-                    ""
-                )}
-                {currentCategory.match("Memes") ? (
-                    <MemeContainer changeSubreddit={changeSubreddit} />
-                ) : (
-                    ""
-                )}
-                {currentCategory.match("Chuck Norris Jokes") ? (
-                    <JokeContainer currentCategory={currentCategory} />
-                ) : (
-                    ""
-                )}
-                {currentCategory.match("Dad Jokes") ? (
-                    <JokeContainer currentCategory={currentCategory} />
-                ) : (
-                    ""
-                )}
-                {currentCategory.match("Credits") ? <Credits /> : ""}
-            </header>
-        </div>
-    );
+  return (
+    <div className="App">
+      <Navbar navText={currentCategory} openHamburgerMenu={openHamburgerMenu} />
+      {hamburgerMenuIsOpen ? (
+        <HamburgerMenu
+          active={hamburgerMenuIsOpen}
+          closeHamburgerMenu={closeHamburgerMenu}
+          setCurrentCategory={(p: any) => setCurrentCategory(p)}
+        />
+      ) : (
+        ""
+      )}
+      {currentCategory.match("Memes") ? (
+        <MemeContainer changeSubreddit={changeSubreddit} />
+      ) : (
+        ""
+      )}
+      {currentCategory.match("Chuck Norris Jokes") ? (
+        <JokeContainer currentCategory={currentCategory} />
+      ) : (
+        ""
+      )}
+      {currentCategory.match("Dad Jokes") ? (
+        <JokeContainer currentCategory={currentCategory} />
+      ) : (
+        ""
+      )}
+      {currentCategory.match("Credits") ? <Credits /> : ""}
+    </div>
+  );
 }
 
 export default App;

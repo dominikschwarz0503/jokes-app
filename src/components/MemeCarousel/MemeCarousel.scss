@@ -1,24 +1,25 @@
 .carousel-container {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 16px;
+  border-radius: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .carousel-content {
     height: 100%;
-    padding: 1.5rem 0;
-    border-radius: 1.5rem;
+    max-width: 500px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none; //firefox
+    gap: 50px;
+    scroll-snap-type: x mandatory;
 
-    .carousel-content {
-        height: 101%;
-        display: flex;
-        overflow-x: auto;
-        scrollbar-width: none; //firefox
-        gap: 50px;
-        scroll-snap-type: x mandatory;
-
-        &::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-        }
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
     }
+  }
 }
